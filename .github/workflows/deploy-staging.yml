@@ -5,7 +5,7 @@ on:
     types: [labeled]
 
 env:
-  DOCKER_IMAGE_NAME: bburrier-azure-ttt
+  DOCKER_IMAGE_NAME: 20220406-0-bburrier-azure-ttt
   IMAGE_REGISTRY_URL: docker.pkg.github.com
   #################################################
   ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
