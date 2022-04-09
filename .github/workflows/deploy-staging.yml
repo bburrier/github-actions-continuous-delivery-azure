@@ -5,8 +5,8 @@ on:
     types: [labeled]
 
 env:
-  DOCKER_IMAGE_NAME: 20220406-0-bburrier-azure-ttt
-  IMAGE_REGISTRY_URL: docker.pkg.github.com
+  DOCKER_IMAGE_NAME: bburrier-azure-ttt
+  IMAGE_REGISTRY_URL: ghcr.io
   #################################################
   ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
   #################################################
@@ -46,10 +46,16 @@ jobs:
           name: webpack artifacts
           path: public
 
-      - name: create image and store in Packages
-        uses: mattdavis0351/actions/docker-gpr@1.3.0
+#       - name: create image and store in Packages
+#         uses: mattdavis0351/actions/docker-gpr@1.3.0
+#         with:
+#           repo-token: ${{secrets.GITHUB_TOKEN}}
+#           image-name: ${{env.DOCKER_IMAGE_NAME}}
+          
+      - name: Build and publish docker image to GHCR
+        uses: VaultVulp/gp-docker-action@1.2.0
         with:
-          repo-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           image-name: ${{env.DOCKER_IMAGE_NAME}}
 
   Deploy-to-Azure:
